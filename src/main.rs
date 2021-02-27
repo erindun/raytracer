@@ -16,28 +16,32 @@ const NX: i32 = 1024;
 const NY: i32 = 768;
 
 fn main() {
-    let camera = Camera::new();
+    let camera = Camera {
+        origin: Vec3::new(0.0, 0.0, 0.0),
+        forward: Vec3::new(0.0, 0.0, 1.0),
+        up: Vec3::new(0.0, 1.0, 0.0),
+    };
 
     // Setup scene.
     let objects: Vec<Box<dyn SceneObject>> = vec![
-        Box::new(Sphere::new(
-            Vec3::new(1.0, 2.0, 15.0),
-            3.0,
-            Color {
+        Box::new(Sphere {
+            origin: Vec3::new(1.0, 2.0, 15.0),
+            radius: 3.0,
+            color: Color {
                 r: 0.5,
                 g: 1.0,
                 b: 0.0,
             },
-        )),
-        Box::new(Plane::new(
-            Vec3::new(0.0, 2.0, 0.0),
-            Vec3::new(0.0, 1.0, 0.0),
-            Color {
+        }),
+        Box::new(Plane {
+            origin: Vec3::new(0.0, 2.0, 0.0),
+            normal: Vec3::new(0.0, 1.0, 0.0),
+            color: Color {
                 r: 0.0,
                 g: 0.5,
                 b: 1.0,
             },
-        )),
+        }),
     ];
 
     // Create ppm file.
@@ -50,7 +54,7 @@ fn main() {
             let y: f32 = j as f32 / NY as f32;
             let direction = camera.calculate_ray_dir(x, y);
 
-            let ray = Ray::new(camera.eye(), direction);
+            let ray = Ray::new(camera.origin, direction);
             let color = ray::cast(ray, &objects);
 
             let buffer;

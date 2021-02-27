@@ -2,19 +2,9 @@ use crate::{color::Color, ray::Ray, scene_object::SceneObject};
 use glam::Vec3;
 
 pub struct Sphere {
-    origin: Vec3,
-    radius: f32,
-    color: Color,
-}
-
-impl Sphere {
-    pub fn new(origin: Vec3, radius: f32, color: Color) -> Sphere {
-        Sphere {
-            origin,
-            radius,
-            color,
-        }
-    }
+    pub origin: Vec3,
+    pub radius: f32,
+    pub color: Color,
 }
 
 impl SceneObject for Sphere {
