@@ -1,4 +1,5 @@
 mod camera;
+mod color;
 mod ray;
 mod scene_object;
 
@@ -13,15 +14,6 @@ use std::io::prelude::*;
 
 const NX: i32 = 1024;
 const NY: i32 = 768;
-
-mod color {
-    #[derive(Copy, Clone)]
-    pub struct Color {
-        pub r: f32,
-        pub g: f32,
-        pub b: f32,
-    }
-}
 
 fn main() {
     let camera = Camera::new();
