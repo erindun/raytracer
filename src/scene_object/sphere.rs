@@ -1,6 +1,4 @@
-use crate::color::Color;
-use crate::ray::Ray;
-use crate::scene_object::SceneObject;
+use crate::{color::Color, ray::Ray, scene_object::SceneObject};
 use glam::Vec3;
 
 pub struct Sphere {
