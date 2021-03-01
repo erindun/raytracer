@@ -102,7 +102,7 @@ fn main() {
             let direction = camera.calculate_ray_dir(x, y);
 
             let ray = Ray::new(camera.origin, direction);
-            let color = ray::cast(ray, &objects);
+            let color = Ray::cast(ray, &objects);
 
             let buffer;
             match color {
