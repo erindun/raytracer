@@ -1,11 +1,13 @@
 mod camera;
 mod color;
+mod light;
 mod ray;
 mod scene_object;
 
 use camera::Camera;
 use color::Color;
 use glam::Vec3;
+use light::Light;
 use ray::Ray;
 use scene_object::{plane::Plane, sphere::Sphere, SceneObject};
 
@@ -25,24 +27,69 @@ fn main() {
     // Setup scene.
     let objects: Vec<Box<dyn SceneObject>> = vec![
         Box::new(Sphere {
-            origin: Vec3::new(1.0, 2.0, 15.0),
-            radius: 3.0,
+            origin: Vec3::new(1.1, 1.25, 7.0),
+            radius: 1.0,
             color: Color {
                 r: 0.5,
+                g: 0.5,
+                b: 1.0,
+            },
+        }),
+        Box::new(Plane {
+            origin: Vec3::new(0.0, 2.0, 0.0),
+            normal: Vec3::new(0.0, -1.0, 0.0),
+            color: Color {
+                r: 1.0,
+                g: 1.0,
+                b: 1.0,
+            },
+        }),
+        Box::new(Plane {
+            origin: Vec3::new(0.0, -2.0, 0.0),
+            normal: Vec3::new(0.0, 1.0, 0.0),
+            color: Color {
+                r: 1.0,
+                g: 1.0,
+                b: 1.0,
+            },
+        }),
+        Box::new(Plane {
+            origin: Vec3::new(-2.0, 0.0, 0.0),
+            normal: Vec3::new(1.0, 0.0, 0.0),
+            color: Color {
+                r: 1.0,
+                g: 0.0,
+                b: 0.0,
+            },
+        }),
+        Box::new(Plane {
+            origin: Vec3::new(2.0, 0.0, 0.0),
+            normal: Vec3::new(-1.0, 0.0, 0.0),
+            color: Color {
+                r: 0.0,
                 g: 1.0,
                 b: 0.0,
             },
         }),
         Box::new(Plane {
-            origin: Vec3::new(0.0, 2.0, 0.0),
-            normal: Vec3::new(0.0, 1.0, 0.0),
+            origin: Vec3::new(0.0, 0.0, 10.0),
+            normal: Vec3::new(0.0, 0.0, -1.0),
             color: Color {
-                r: 0.0,
-                g: 0.5,
+                r: 1.0,
+                g: 1.0,
                 b: 1.0,
             },
         }),
     ];
+
+    let _light = Light {
+        origin: Vec3::new(-1.0, -1.0, 7.0),
+        color: Color {
+            r: 2.0,
+            g: 2.0,
+            b: 2.0,
+        },
+    };
 
     // Create ppm file.
     let mut file = File::create("output.ppm").expect("Error creating file.");
