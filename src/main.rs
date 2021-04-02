@@ -1,3 +1,6 @@
+mod color;
+use color::Color;
+
 fn main() {
     const IMAGE_WIDTH: i32 = 256;
     const IMAGE_HEIGHT: i32 = 256;
@@ -5,11 +8,13 @@ fn main() {
 
     for j in (0..IMAGE_HEIGHT).rev() {
         for i in 0..IMAGE_WIDTH {
-            let r: f32 = (i as f32 / (IMAGE_WIDTH - 1) as f32) * 255.999;
-            let g: f32 = (j as f32 / (IMAGE_HEIGHT - 1) as f32) * 255.999;
-            let b: f32 = 0.25 * 255.999;
+            let color = Color {
+                r: (i as f32 / (IMAGE_WIDTH - 1) as f32),
+                g: (j as f32 / (IMAGE_HEIGHT - 1) as f32),
+                b: 0.25,
+            };
 
-            println!("{} {} {}", r as i32, g as i32, b as i32);
+            println!("{}", color);
         }
     }
 }
