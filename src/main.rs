@@ -1,4 +1,5 @@
 mod color;
+mod vec3;
 use color::Color;
 use std::fs::File;
 use std::io::{self, Write};
