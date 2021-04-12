@@ -84,7 +84,7 @@ impl Mul<f32> for Vec3 {
 }
 
 impl MulAssign<f32> for Vec3 {
-    fn mul(&mut self, scalar: f32) -> Self::Output {
+    fn mul_assign(&mut self, scalar: f32) {
         *self = Self {
             x: self.x * scalar,
             y: self.y * scalar,
