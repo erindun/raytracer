@@ -153,5 +153,5 @@ mod tests {
         assert_eq!(result, expected);
     }
 
-    // TODO test `cross`
+    // TODO test `cross`, `Mul`, `MulAssign`
 }
