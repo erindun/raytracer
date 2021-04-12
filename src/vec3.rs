@@ -1,4 +1,4 @@
-use std::ops::{Add, AddAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
 
 #[derive(Debug, PartialEq)]
 pub struct Vec3 {
@@ -67,6 +67,28 @@ impl SubAssign for Vec3 {
             x: self.x - other.x,
             y: self.y - other.y,
             z: self.z - other.z,
+        }
+    }
+}
+
+impl Mul<f32> for Vec3 {
+    type Output = Self;
+
+    fn mul(self, scalar: f32) -> Self::Output {
+        Self {
+            x: self.x * scalar,
+            y: self.y * scalar,
+            z: self.z * scalar,
+        }
+    }
+}
+
+impl MulAssign<f32> for Vec3 {
+    fn mul(&mut self, scalar: f32) -> Self::Output {
+        *self = Self {
+            x: self.x * scalar,
+            y: self.y * scalar,
+            z: self.z * scalar,
         }
     }
 }
