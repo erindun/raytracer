@@ -25,6 +25,14 @@ impl Vec3 {
         let z = (self.x * other.y) - (self.y * other.z);
         Vec3::new(x, y, z)
     }
+
+    pub fn normal(&self) -> Vec3 {
+        Vec3 {
+           x: if self.x > 0.0 { 1.0 } else if self.x < 0.0 { -1.0 } else { 0.0 },
+           y: if self.y > 0.0 { 1.0 } else if self.y < 0.0 { -1.0 } else { 0.0 },
+           z: if self.z > 0.0 { 1.0 } else if self.z < 0.0 { -1.0 } else { 0.0 },
+        }
+    }
 }
 
 impl Add for Vec3 {
@@ -163,6 +171,14 @@ mod tests {
         let expected = 22.0;
         let result = vec1.dot(vec2);
         assert_eq!(result, expected);
+    }
+
+    #[test]
+    fn test_normal() {
+        let vec = Vec3::new(0.52, -1.2, 0.0);
+        let expected = Vec3::new(1.0, -1.0, 0.0);
+        let vec = vec.normal();
+        assert_eq!(vec, expected);
     }
 
     // TODO test `cross`, `Mul`, `MulAssign`
