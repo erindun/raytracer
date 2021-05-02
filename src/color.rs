@@ -7,6 +7,12 @@ pub struct Color {
     pub b: f32,
 }
 
+impl Color {
+    pub fn new(r: f32, g: f32, b: f32) -> Color {
+        Color { r, g, b }
+    }
+}
+
 impl fmt::Display for Color {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         write!(

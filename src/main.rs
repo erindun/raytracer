@@ -21,11 +21,11 @@ fn main() {
             print!(" ");
             io::stdout().flush().unwrap();
 
-            let color = Color {
-                r: (i as f32 / (IMAGE_WIDTH - 1) as f32),
-                g: (j as f32 / (IMAGE_HEIGHT - 1) as f32),
-                b: 0.25,
-            };
+            let color = Color::new(
+                i as f32 / (IMAGE_WIDTH - 1) as f32,
+                j as f32 / (IMAGE_HEIGHT - 1) as f32,
+                0.25,
+            );
 
             writeln!(f, "{}", color).expect("Error writing to file.");
         }
