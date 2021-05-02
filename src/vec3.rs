@@ -28,9 +28,27 @@ impl Vec3 {
 
     pub fn normal(&self) -> Vec3 {
         Vec3 {
-           x: if self.x > 0.0 { 1.0 } else if self.x < 0.0 { -1.0 } else { 0.0 },
-           y: if self.y > 0.0 { 1.0 } else if self.y < 0.0 { -1.0 } else { 0.0 },
-           z: if self.z > 0.0 { 1.0 } else if self.z < 0.0 { -1.0 } else { 0.0 },
+            x: if self.x > 0.0 {
+                1.0
+            } else if self.x < 0.0 {
+                -1.0
+            } else {
+                0.0
+            },
+            y: if self.y > 0.0 {
+                1.0
+            } else if self.y < 0.0 {
+                -1.0
+            } else {
+                0.0
+            },
+            z: if self.z > 0.0 {
+                1.0
+            } else if self.z < 0.0 {
+                -1.0
+            } else {
+                0.0
+            },
         }
     }
 }
