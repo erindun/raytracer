@@ -1,4 +1,4 @@
-use std::ops::{Add, AddAssign, Mul, MulAssign, Sub, SubAssign};
+use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
 
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Vec3 {
@@ -113,6 +113,40 @@ impl MulAssign<f32> for Vec3 {
     }
 }
 
+impl Div<f32> for Vec3 {
+    type Output = Self;
+
+    fn div(self, scalar: f32) -> Self::Output {
+        Self {
+            x: self.x / scalar,
+            y: self.y / scalar,
+            z: self.z / scalar,
+        }
+    }
+}
+
+impl Div<Vec3> for f32 {
+    type Output = Vec3;
+
+    fn div(self, vec: Vec3) -> Vec3 {
+        Vec3 {
+            x: self / vec.x,
+            y: self / vec.y,
+            z: self / vec.z,
+        }
+    }
+}
+
+impl DivAssign<f32> for Vec3 {
+    fn div_assign(&mut self, scalar: f32) {
+        *self = Self {
+            x: self.x / scalar,
+            y: self.y / scalar,
+            z: self.z / scalar,
+        }
+    }
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -181,5 +215,5 @@ mod tests {
         assert_eq!(vec, expected);
     }
 
-    // TODO test `cross`, `Mul`, `MulAssign`
+    // TODO test `cross`, `Mul`, `MulAssign`, `Div`, `DivAssign`
 }
