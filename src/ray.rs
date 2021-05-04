@@ -18,8 +18,9 @@ impl Ray {
 }
 
 pub fn gen_ray_color(ray: &Ray, sphere: &Sphere) -> Color {
-    if sphere.hit(ray).is_some() {
-        return Color::new(1.0, 0.0, 0.0);
+    if let Some(t) = sphere.hit(&ray) {
+        let n = ray.at(t) - Vec3::new(0.0, 0.0, -1.0);
+        return Color::new((n.x + 1.0) * 0.5, (n.y + 1.0) * 0.5, (n.z + 1.0) * 0.5);
     }
 
     let unit_direction = ray.direction;
