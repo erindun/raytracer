@@ -1,9 +1,10 @@
 use crate::color::Color;
+use crate::sphere::Sphere;
 use crate::vec3::Vec3;
 
 pub struct Ray {
-    origin: Vec3,
-    direction: Vec3,
+    pub origin: Vec3,
+    pub direction: Vec3,
 }
 
 impl Ray {
@@ -16,10 +17,13 @@ impl Ray {
     }
 }
 
-pub fn gen_ray_color(ray: &Ray) -> Color {
+pub fn gen_ray_color(ray: &Ray, sphere: &Sphere) -> Color {
+    if sphere.hit(ray).is_some() {
+        return Color::new(1.0, 0.0, 0.0);
+    }
+
     let unit_direction = ray.direction;
     let t = 0.5 * (unit_direction.y + 1.0);
-    println!("t: {:?} unit_direction: {:?} ", t, unit_direction);
 
     let colors: Vec<f32> = vec![0.5, 0.7, 1.0]
         .iter()

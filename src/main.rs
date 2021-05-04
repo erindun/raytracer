@@ -1,9 +1,11 @@
 mod color;
 mod ray;
+mod sphere;
 mod vec3;
 
 use color::Color;
 use ray::Ray;
+use sphere::Sphere;
 use std::fs::File;
 use std::io::{self, Write};
 use vec3::Vec3;
@@ -25,6 +27,8 @@ fn main() {
     let lower_left_corner =
         origin - horizontal / 2.0 - vertical / 2.0 - Vec3::new(0.0, 0.0, focal_length);
 
+    let sphere = Sphere::new(Vec3::new(0.0, 0.0, -1.0), 0.5, Color::new(1.0, 0.0, 0.0));
+
     let mut f = File::create("output.ppm").expect("Error creating file.");
 
     // PPM file header.
@@ -42,7 +46,7 @@ fn main() {
                 origin,
                 lower_left_corner + u * horizontal + v * vertical - origin,
             );
-            let pixel_color = ray::gen_ray_color(&ray);
+            let pixel_color = ray::gen_ray_color(&ray, &sphere);
 
             writeln!(f, "{}", pixel_color).expect("Error writing to file.");
         }
