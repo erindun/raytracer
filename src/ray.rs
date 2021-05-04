@@ -17,11 +17,14 @@ impl Ray {
 }
 
 pub fn gen_ray_color(ray: &Ray) -> Color {
-    let unit_direction = ray.direction.normal();
+    let unit_direction = ray.direction;
     let t = 0.5 * (unit_direction.y + 1.0);
+    println!("t: {:?} unit_direction: {:?} ", t, unit_direction);
 
-    let r = (1.0 * (1.0 - t)) + t * 0.5;
-    let g = (1.0 * (1.0 - t)) + t * 0.7;
-    let b = (1.0 * (1.0 - t)) + t * 1.0;
-    Color::new(r, g, b)
+    let colors: Vec<f32> = vec![0.5, 0.7, 1.0]
+        .iter()
+        .map(|c| 1.0 * (1.0 - t) + t * c)
+        .collect();
+
+    Color::new(colors[0], colors[1], colors[2])
 }
