@@ -26,30 +26,12 @@ impl Vec3 {
         Vec3::new(x, y, z)
     }
 
+    pub fn magnitude(&self) -> f32 {
+        self.dot(*self).sqrt()
+    }
+
     pub fn normal(&self) -> Vec3 {
-        Vec3 {
-            x: if self.x > 0.0 {
-                1.0
-            } else if self.x < 0.0 {
-                -1.0
-            } else {
-                0.0
-            },
-            y: if self.y > 0.0 {
-                1.0
-            } else if self.y < 0.0 {
-                -1.0
-            } else {
-                0.0
-            },
-            z: if self.z > 0.0 {
-                1.0
-            } else if self.z < 0.0 {
-                -1.0
-            } else {
-                0.0
-            },
-        }
+        *self / self.magnitude()
     }
 }
 
@@ -233,5 +215,5 @@ mod tests {
         assert_eq!(vec, expected);
     }
 
-    // TODO test `cross`, `Mul`, `MulAssign`, `Div`, `DivAssign`
+    // TODO test `cross`, `Mul`, `MulAssign`, `Div`, `DivAssign`, `normal`, `magnitude`
 }
