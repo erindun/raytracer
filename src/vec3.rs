@@ -1,5 +1,6 @@
 use std::ops::{Add, AddAssign, Div, DivAssign, Mul, MulAssign, Sub, SubAssign};
 
+/// A 3-dimensional vector.
 #[derive(Debug, PartialEq, Clone, Copy)]
 pub struct Vec3 {
     pub x: f32,
@@ -8,10 +9,12 @@ pub struct Vec3 {
 }
 
 impl Vec3 {
+    /// Returns a new `Vec3`.
     pub fn new(x: f32, y: f32, z: f32) -> Vec3 {
         Vec3 { x, y, z }
     }
 
+    /// Computes the dot product of two vectors.
     pub fn dot(&self, other: Vec3) -> f32 {
         let x = self.x * other.x;
         let y = self.y * other.y;
@@ -19,6 +22,7 @@ impl Vec3 {
         x + y + z
     }
 
+    /// Computes the cross product of two vectors.
     pub fn cross(&self, other: Vec3) -> Vec3 {
         let x = (self.y * other.z) - (self.z * other.y);
         let y = (self.z * other.x) - (self.x * other.z);
@@ -26,10 +30,12 @@ impl Vec3 {
         Vec3::new(x, y, z)
     }
 
+    /// Returns the magnitude of the vector.
     pub fn magnitude(&self) -> f32 {
         self.dot(*self).sqrt()
     }
 
+    /// Returns the normal of the vector.
     pub fn normal(&self) -> Vec3 {
         *self / self.magnitude()
     }
