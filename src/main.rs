@@ -1,11 +1,11 @@
 mod color;
 mod ray;
-mod sphere;
+mod hittable;
 mod vec3;
 
 use color::Color;
 use ray::Ray;
-use sphere::Sphere;
+use hittable::sphere::Sphere;
 use std::fs::File;
 use std::io::{self, Write};
 use vec3::Vec3;

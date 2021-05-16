@@ -1,3 +1,4 @@
+use super::Hittable;
 use crate::{color::Color, ray::Ray, vec3::Vec3};
 
 pub struct Sphere {
@@ -15,7 +16,10 @@ impl Sphere {
         }
     }
 
-    pub fn hit(&self, ray: &Ray) -> Option<f32> {
+}
+
+impl Hittable for Sphere {
+    fn hit(&self, ray: &Ray) -> Option<f32> {
         let oc: Vec3 = ray.origin - self.origin;
 
         let a = ray.direction.dot(ray.direction);

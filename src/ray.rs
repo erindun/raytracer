@@ -1,5 +1,5 @@
 use crate::color::Color;
-use crate::sphere::Sphere;
+use crate::hittable::{Hittable, sphere::Sphere};
 use crate::vec3::Vec3;
 
 pub struct Ray {
