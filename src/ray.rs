@@ -1,5 +1,5 @@
 use crate::color::Color;
-use crate::hittable::{Hittable, sphere::Sphere};
+use crate::hittable::{sphere::Sphere, Hittable};
 use crate::vec3::Vec3;
 
 pub struct Ray {
@@ -27,10 +27,4 @@ pub fn gen_ray_color(ray: &Ray, sphere: &Sphere) -> Color {
     let t = 0.5 * (unit_direction.y + 1.0);
 
     (1.0 - t) * Color::new(1.0, 1.0, 1.0) + t * Color::new(0.5, 0.7, 1.0)
-    // let colors: Vec<f32> = vec![0.5, 0.7, 1.0]
-    //     .iter()
-    //     .map(|c| 1.0 * (1.0 - t) + t * c)
-    //     .collect();
-
-    // Color::new(colors[0], colors[1], colors[2])
 }
