@@ -18,8 +18,8 @@ impl Ray {
 }
 
 pub fn gen_ray_color(ray: &Ray, sphere: &Sphere) -> Color {
-    if let Some(t) = sphere.hit(&ray) {
-        let n = (ray.at(t) - Vec3::new(0.0, 0.0, -1.0)).normal();
+    if let Some(hit) = sphere.hit(&ray, f32::MIN, f32::MAX) {
+        let n = (ray.at(hit.t) - Vec3::new(0.0, 0.0, -1.0)).normal();
         return 0.5 * Color::new(n.x + 1.0, n.y + 1.0, n.z + 1.0);
     }
 
